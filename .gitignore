@@ -38,7 +38,7 @@ src/main/java/epaw/lab1/Solucio.java
 *.rar
 
 # SQLite Database (generated locally)
-lab1.db
+lab2.db
 
 # User Uploaded Images
 EXTERNAL_RESOURCES/images/*
