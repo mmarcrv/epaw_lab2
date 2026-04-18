@@ -1,0 +1,14 @@
+@charset "UTF-8";
+input.w3-input:valid {
+	border-left: 4px solid green !important;
+}
+input.w3-input:invalid {
+	border-left: 4px solid red !important;
+}
+ body {
+	background-color: #f1f1f1;
+}
+.main-container {
+	max-width: 500px;
+	margin: 50px auto;
+}

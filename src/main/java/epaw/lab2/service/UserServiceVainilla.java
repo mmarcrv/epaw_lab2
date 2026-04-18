@@ -1,0 +1,56 @@
+package epaw.lab2.service;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import epaw.lab2.model.User;
+import epaw.lab2.repository.UserRepository;
+
+public class UserServiceVainilla {
+	
+	private static UserServiceVainilla instance;
+	private UserRepository userRepository;
+	
+	private UserServiceVainilla() {
+        this.userRepository = UserRepository.getInstance();
+    }
+	
+	public static synchronized UserServiceVainilla getInstance() {
+		if (instance == null) {
+			instance = new UserServiceVainilla();
+		}
+		return instance;
+	}
+	
+	private static final String PASSWORD_REGEX = 
+	        "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*]).{8,}$";
+	
+    public Map<String, String> validate(User user) {
+        Map<String, String> errors = new HashMap<>();
+
+        String name = user.getName();
+        if (name == null || name.trim().isEmpty()) {
+            errors.put("name", "Username cannot be empty.");
+        } else if (name.length() < 5 || name.length() > 20) {
+            errors.put("name", "Username must be between 5 and 20 characters.");
+        } else if (userRepository.existsByUsername(name)) {
+            errors.put("name", "Username already exists.");
+        }
+
+        String password = user.getPassword();
+        if (password == null || !password.matches(PASSWORD_REGEX)) {
+            errors.put("password", "Password must be 8+ chars, upper, lower, number and symbol.");
+        }
+
+        return errors;
+    }
+
+    public Map<String, String> register(User user) {
+        Map<String, String> errors = validate(user);
+        if (errors.isEmpty()) {
+            userRepository.save(user);
+        }
+        return errors;
+    }
+
+}
