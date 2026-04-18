@@ -5,12 +5,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.ConstraintViolation;
 import epaw.lab2.model.User;
 import epaw.lab2.service.UserService;
 
 import java.io.IOException;
-import java.util.Set;
+import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -43,7 +42,7 @@ public class Register extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		Set<ConstraintViolation<User>> errors = userService.register(user);
+		Map<String, String> errors = userService.register(user);
 
 		if (errors.isEmpty()) {
 			request.setAttribute("user", user);

@@ -1,11 +1,8 @@
 package epaw.lab2.service;
 
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
 import epaw.lab2.model.User;
 import epaw.lab2.repository.UserRepository;
 
@@ -13,30 +10,47 @@ public class UserService {
 	
 	private static UserService instance;
 	private UserRepository userRepository;
-    private Validator validator;
-
+	
 	private UserService() {
-		this.userRepository = UserRepository.getInstance();
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        this.validator = factory.getValidator();
-	}
-
+        this.userRepository = UserRepository.getInstance();
+    }
+	
 	public static synchronized UserService getInstance() {
 		if (instance == null) {
 			instance = new UserService();
 		}
 		return instance;
 	}
+	
+	private static final String PASSWORD_REGEX = 
+	        "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*]).{8,}$";
+	
+    public Map<String, String> validate(User user) {
+        Map<String, String> errors = new HashMap<>();
 
-	public Set<ConstraintViolation<User>> validate(User user) {
-		return validator.validate(user);
-	}
+        String name = user.getName();
+        if (name == null || name.trim().isEmpty()) {
+            errors.put("name", "Username cannot be empty.");
+        } else if (name.length() < 5 || name.length() > 20) {
+            errors.put("name", "Username must be between 5 and 20 characters.");
+        } else if (userRepository.existsByUsername(name)) {
+            errors.put("name", "Username already exists.");
+        }
 
-	public Set<ConstraintViolation<User>> register(User user) {
-		Set<ConstraintViolation<User>> errors = validate(user);
-		if (errors.isEmpty()) {
-			userRepository.save(user);
-		}
-		return errors;
-	}
+        String password = user.getPassword();
+        if (password == null || !password.matches(PASSWORD_REGEX)) {
+            errors.put("password", "Password must be 8+ chars, upper, lower, number and symbol.");
+        }
+
+        return errors;
+    }
+
+    public Map<String, String> register(User user) {
+        Map<String, String> errors = validate(user);
+        if (errors.isEmpty()) {
+            userRepository.save(user);
+        }
+        return errors;
+    }
+
 }
