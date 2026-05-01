@@ -1,4 +1,4 @@
-# 🚀 Lab 2 - EPAW (Formularis i Validació)
+# 🚀 Lab 2 - EPAW (Formularis i Validació) Marc i Clara
 
 Aquesta és la plantilla base per a la Pràctica 2 de l'assignatura d'EPAW. Està configurada perquè puguis començar a programar el teu formulari de registre de manera segura i robusta.
 
