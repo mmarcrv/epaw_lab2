@@ -23,8 +23,70 @@
             <form id="registerForm" action="Register" method="POST" class="w3-container w3-padding-24">
 
                 <p>
+                    <label class="w3-text-grey">Nom</label>
+                    <input class="w3-input w3-border" type="text" id="firstName" name="firstName" required minlength="2" maxlength="50"
+                        value="${user.firstName}" title="El nom ha de tenir entre 2 i 50 caràcters." />
+                </p>
+
+                <p>
+                    <label class="w3-text-grey">Cognoms</label>
+                    <input class="w3-input w3-border" type="text" id="lastName" name="lastName" required minlength="2" maxlength="50"
+                        value="${user.lastName}" title="Els cognoms han de tenir entre 2 i 50 caràcters." />
+                </p>
+
+                <p>
+                    <label class="w3-text-grey">Data de naixement</label>
+                    <input class="w3-input w3-border" type="date" id="dateOfBirth" name="dateOfBirth" required
+                        value="${user.dateOfBirth}" title="Si us plau, introduïu una data válida." />
+                </p>
+
+                <p>
+                    <label class="w3-text-grey">Comarca d'origen</label>
+                    <select class="w3-input w3-border" id="comarca" name="comarca" required>
+                        <option value="">-- Selecciona una comarca --</option>
+                        <option value="Alt Camp" ${user.comarca == 'Alt Camp' ? 'selected' : ''}>Alt Camp</option>
+                        <option value="Alt Empordà" ${user.comarca == 'Alt Empordà' ? 'selected' : ''}>Alt Empordà</option>
+                        <option value="Alt Penedès" ${user.comarca == 'Alt Penedès' ? 'selected' : ''}>Alt Penedès</option>
+                        <option value="Anoia" ${user.comarca == 'Anoia' ? 'selected' : ''}>Anoia</option>
+                        <option value="Bages" ${user.comarca == 'Bages' ? 'selected' : ''}>Bages</option>
+                        <option value="Baix Camp" ${user.comarca == 'Baix Camp' ? 'selected' : ''}>Baix Camp</option>
+                        <option value="Baix Ebre" ${user.comarca == 'Baix Ebre' ? 'selected' : ''}>Baix Ebre</option>
+                        <option value="Baix Llobregat" ${user.comarca == 'Baix Llobregat' ? 'selected' : ''}>Baix Llobregat</option>
+                        <option value="Baix Penedès" ${user.comarca == 'Baix Penedès' ? 'selected' : ''}>Baix Penedès</option>
+                        <option value="Barcelona" ${user.comarca == 'Barcelona' ? 'selected' : ''}>Barcelona</option>
+                        <option value="Berguedà" ${user.comarca == 'Berguedà' ? 'selected' : ''}>Berguedà</option>
+                        <option value="Cerdanya" ${user.comarca == 'Cerdanya' ? 'selected' : ''}>Cerdanya</option>
+                        <option value="Conca de Barberà" ${user.comarca == 'Conca de Barberà' ? 'selected' : ''}>Conca de Barberà</option>
+                        <option value="Garraf" ${user.comarca == 'Garraf' ? 'selected' : ''}>Garraf</option>
+                        <option value="Garrigues" ${user.comarca == 'Garrigues' ? 'selected' : ''}>Garrigues</option>
+                        <option value="Garrotxa" ${user.comarca == 'Garrotxa' ? 'selected' : ''}>Garrotxa</option>
+                        <option value="Gironès" ${user.comarca == 'Gironès' ? 'selected' : ''}>Gironès</option>
+                        <option value="Maresme" ${user.comarca == 'Maresme' ? 'selected' : ''}>Maresme</option>
+                        <option value="Montsià" ${user.comarca == 'Montsià' ? 'selected' : ''}>Montsià</option>
+                        <option value="Noguera" ${user.comarca == 'Noguera' ? 'selected' : ''}>Noguera</option>
+                        <option value="Osona" ${user.comarca == 'Osona' ? 'selected' : ''}>Osona</option>
+                        <option value="Pallars Jussà" ${user.comarca == 'Pallars Jussà' ? 'selected' : ''}>Pallars Jussà</option>
+                        <option value="Pallars Sobirà" ${user.comarca == 'Pallars Sobirà' ? 'selected' : ''}>Pallars Sobirà</option>
+                        <option value="Pla d'Urgell" ${user.comarca == 'Pla d\'Urgell' ? 'selected' : ''}>Pla d'Urgell</option>
+                        <option value="Pla de l'Estany" ${user.comarca == 'Pla de l\'Estany' ? 'selected' : ''}>Pla de l'Estany</option>
+                        <option value="Priorat" ${user.comarca == 'Priorat' ? 'selected' : ''}>Priorat</option>
+                        <option value="Ribera d'Ebre" ${user.comarca == 'Ribera d\'Ebre' ? 'selected' : ''}>Ribera d'Ebre</option>
+                        <option value="Ripollès" ${user.comarca == 'Ripollès' ? 'selected' : ''}>Ripollès</option>
+                        <option value="Segarra" ${user.comarca == 'Segarra' ? 'selected' : ''}>Segarra</option>
+                        <option value="Segrià" ${user.comarca == 'Segrià' ? 'selected' : ''}>Segrià</option>
+                        <option value="Selva" ${user.comarca == 'Selva' ? 'selected' : ''}>Selva</option>
+                        <option value="Solsonès" ${user.comarca == 'Solsonès' ? 'selected' : ''}>Solsonès</option>
+                        <option value="Tarragonès" ${user.comarca == 'Tarragonès' ? 'selected' : ''}>Tarragonès</option>
+                        <option value="Terra Alta" ${user.comarca == 'Terra Alta' ? 'selected' : ''}>Terra Alta</option>
+                        <option value="Urgell" ${user.comarca == 'Urgell' ? 'selected' : ''}>Urgell</option>
+                        <option value="Vallès Occidental" ${user.comarca == 'Vallès Occidental' ? 'selected' : ''}>Vallès Occidental</option>
+                        <option value="Vallès Oriental" ${user.comarca == 'Vallès Oriental' ? 'selected' : ''}>Vallès Oriental</option>
+                    </select>
+                </p>
+
+                <p>
                     <label class="w3-text-grey">Nom d'usuari</label>
-                    <input class="w3-input w3-border" type="text" id="name" name="name" required minlength="5"
+                    <input class="w3-input w3-border" type="text" id="name" name="name" required minlength="5" maxlength="20"
                         value="${user.name}" title="L'usuari ha de tenir entre 5 i 20 caràcters." />
                 </p>
 
