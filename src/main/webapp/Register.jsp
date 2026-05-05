@@ -85,6 +85,12 @@
                 </p>
 
                 <p>
+                    <label class="w3-text-grey">Correu electrònic</label>
+                    <input class="w3-input w3-border" type="email" id="email" name="email" required
+                        value="${user.email}" title="Introduïu un correu electrònic vàlid." />
+                </p>
+
+                <p>
                     <label class="w3-text-grey">Nom d'usuari</label>
                     <input class="w3-input w3-border" type="text" id="name" name="name" required minlength="5" maxlength="20"
                         value="${user.name}" title="L'usuari ha de tenir entre 5 i 20 caràcters." />
