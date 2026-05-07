@@ -12,13 +12,14 @@ const comarca = document.getElementById('comarca');
  * Validació de coincidència de contrasenyes en temps real.
  * Utilitzem l'esdeveniment 'input' perquè es comprovi cada vegada que l'usuari escriu.
  */
-confirmPassword.addEventListener('input', () => {
-  // setCustomValidity("") marca el camp com a vàlid.
-  // Si hi ha un text, el marca com a invàlid i el navegador bloqueja l'enviament.
+function checkPasswordsMatch() {
   confirmPassword.setCustomValidity(
     confirmPassword.value !== password.value ? "Les contrasenyes no coincideixen." : ""
   );
-});
+}
+
+confirmPassword.addEventListener('input', checkPasswordsMatch);
+password.addEventListener('input', checkPasswordsMatch);
 
 /**
  * Validació de data de naixement.
