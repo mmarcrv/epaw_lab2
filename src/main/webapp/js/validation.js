@@ -45,7 +45,7 @@ dateOfBirth.addEventListener('change', () => {
 email.addEventListener('input', () => {
   const emailRegex = /^[A-Za-z0-9+_.-]+@(.+)$/;
   if (email.value && !emailRegex.test(email.value)) {
-    email.setCustomValidity("Format de correu electrònic inválid.");
+    email.setCustomValidity("Format de correu electrònic invàlid.");
   } else {
     email.setCustomValidity("");
   }
