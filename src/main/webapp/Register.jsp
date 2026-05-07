@@ -42,7 +42,7 @@
 
                 <p>
                     <label class="w3-text-grey">Comarca d'origen</label>
-                    <select class="w3-input w3-border" id="comarca" name="comarca" required>
+                    <select class="w3-input w3-border" id="comarca" name="comarca">
                         <option value="">-- Selecciona una comarca --</option>
                         <option value="Alt Camp" ${user.comarca == 'Alt Camp' ? 'selected' : ''}>Alt Camp</option>
                         <option value="Alt Empordà" ${user.comarca == 'Alt Empordà' ? 'selected' : ''}>Alt Empordà</option>
@@ -92,8 +92,8 @@
 
                 <p>
                     <label class="w3-text-grey">Nom d'usuari</label>
-                    <input class="w3-input w3-border" type="text" id="name" name="name" required minlength="5" maxlength="20"
-                        value="${user.name}" title="L'usuari ha de tenir entre 5 i 20 caràcters." />
+                    <input class="w3-input w3-border" type="text" id="name" name="name" required minlength="5" maxlength="15"
+                        value="${user.name}" title="L'usuari ha de tenir entre 5 i 15 caràcters." />
                 </p>
 
                 <p>

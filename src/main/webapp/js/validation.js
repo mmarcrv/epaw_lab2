@@ -68,17 +68,6 @@ function validateNameField(field) {
 validateNameField(firstName);
 validateNameField(lastName);
 
-/**
- * Validació de comarca.
- * Comprova que s'ha seleccionat una opció vàlida.
- */
-comarca.addEventListener('change', () => {
-  if (!comarca.value) {
-    comarca.setCustomValidity("Si us plau, selecciona una comarca.");
-  } else {
-    comarca.setCustomValidity("");
-  }
-});
 
 /**
  * Gestió d'errors provinents del servidor.
